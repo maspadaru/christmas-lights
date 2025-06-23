@@ -110,9 +110,15 @@ class LightGridTest {
     }
 
     @Test
-    void testInvalidRangeThrows() {
+    void testTurnLightsOnInvalidRangeThrows() {
         LightGrid lightGrid = new LightGrid(10, 10);
         assertThrows(IllegalArgumentException.class, () -> lightGrid.turnLightsOn(new Point(5, 5), new Point(4, 4)));
+    }
+
+    @Test
+    void testTurnLightsOffInvalidRangeThrows() {
+        LightGrid lightGrid = new LightGrid(10, 10);
+        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnLightsOff(new Point(5, 5), new Point(4, 4)));
     }
 
     @Test

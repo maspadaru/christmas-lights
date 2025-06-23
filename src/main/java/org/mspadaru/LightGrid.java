@@ -9,14 +9,18 @@ public class LightGrid {
     private final int[][] grid;
 
     public LightGrid(int xSize, int ySize) {
-        grid = new int[xSize][ySize];
-        Point start = new Point(0, 0);
-        Point end = new Point(xSize - 1, ySize - 1);
-        forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_OFF);
+        if (isGridSizeValid(xSize, ySize)) {
+            grid = new int[xSize][ySize];
+            Point start = new Point(0, 0);
+            Point end = new Point(xSize - 1, ySize - 1);
+            forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_OFF);
+        } else {
+            throw new IllegalArgumentException("Grid dimnesions cannot be zero");
+        }
     }
 
     public void turnLightsOn(Point start, Point end) {
-        if (isPointWithinBounds(start) && isPointWithinBounds(end)) {
+        if (isPointWithinBounds(start) && isPointWithinBounds(end) && isValidRange(start, end)) {
             forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_ON);
         } else {
             throw new IllegalArgumentException("One or more points are not within the bounds of the grid");
@@ -24,7 +28,7 @@ public class LightGrid {
     }
 
     public void turnLightsOff(Point start, Point end) {
-        if (isPointWithinBounds(start) && isPointWithinBounds(end)) {
+        if (isPointWithinBounds(start) && isPointWithinBounds(end) && isValidRange(start, end)) {
             forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_OFF);
         } else {
             throw new IllegalArgumentException("One or more points are not within the bounds of the grid");
@@ -43,16 +47,24 @@ public class LightGrid {
         return total.get();
     }
 
+    private boolean isValidRange(Point start, Point end) {
+        return start.getX() <= end.getX() && start.getY() <= end.getY();
+    }
+
+    private boolean isPointWithinBounds(Point point) {
+        return point.getX() >= 0 && point.getY() >= 0 && point.getX() < grid.length && point.getY() < grid[0].length;
+    }
+
+    private boolean isGridSizeValid(int x, int y) {
+        return x > 0 && y > 0;
+    }
+
     private void forEachPoint(Point start, Point end, IntConsumer2D action) {
         for (int x = start.getX(); x <= end.getX(); x++) {
             for (int y = start.getY(); y <= end.getY(); y++) {
                 action.accept(x, y);
             }
         }
-    }
-
-    private boolean isPointWithinBounds(Point point) {
-        return point.getX() >= 0 && point.getY() >= 0 && point.getX() < grid.length && point.getY() < grid[0].length;
     }
 
     @FunctionalInterface
