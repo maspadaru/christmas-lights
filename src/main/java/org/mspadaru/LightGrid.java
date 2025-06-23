@@ -20,28 +20,19 @@ public class LightGrid {
     }
 
     public void turnLightsOn(Point start, Point end) {
-        if (isPointWithinBounds(start) && isPointWithinBounds(end) && isValidRange(start, end)) {
-            forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_ON);
-        } else {
-            throw new IllegalArgumentException("One or more points are not within the bounds of the grid");
-        }
+        validateRange(start, end);
+        forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_ON);
     }
 
     public void turnLightsOff(Point start, Point end) {
-        if (isPointWithinBounds(start) && isPointWithinBounds(end) && isValidRange(start, end)) {
-            forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_OFF);
-        } else {
-            throw new IllegalArgumentException("One or more points are not within the bounds of the grid");
-        }
+        validateRange(start, end);
+        forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_OFF);
     }
 
 
     public void toggleLights(Point start, Point end) {
-        if (isPointWithinBounds(start) && isPointWithinBounds(end) && isValidRange(start, end)) {
-            forEachPoint(start, end, (x, y) -> grid[x][y] = grid[x][y] == LIGHT_OFF ? LIGHT_ON : LIGHT_OFF);
-        } else {
-            throw new IllegalArgumentException("One or more points are not within the bounds of the grid");
-        }
+        validateRange(start, end);
+        forEachPoint(start, end, (x, y) -> grid[x][y] = grid[x][y] == LIGHT_OFF ? LIGHT_ON : LIGHT_OFF);
     }
 
     public int countLightsOn() {
@@ -54,6 +45,12 @@ public class LightGrid {
             }
         });
         return total.get();
+    }
+
+    private void validateRange(Point start, Point end) {
+        if (!isPointWithinBounds(start) || !isPointWithinBounds(end) || !isValidRange(start, end)) {
+            throw new IllegalArgumentException("Points are out of bounds or range is invalid");
+        }
     }
 
     private boolean isValidRange(Point start, Point end) {
