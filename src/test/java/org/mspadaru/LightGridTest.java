@@ -90,4 +90,20 @@ class LightGridTest {
         assertEquals(51, lightGrid.countLightsOn());
     }
 
+    @Test
+    void test10x10GridTurnLightsOnOutOfBounds() {
+        LightGrid lightGrid = new LightGrid(10, 10);
+        assertThrows(IllegalArgumentException.class, () ->
+                lightGrid.turnLightsOn(new Point(9, 9), new Point(10, 10))
+        );
+    }
+
+    @Test
+    void test10x10GridTurnLightsOffOutOfBounds() {
+        LightGrid lightGrid = new LightGrid(10, 10);
+        assertThrows(IllegalArgumentException.class, () ->
+                lightGrid.turnLightsOff(new Point(9, 9), new Point(10, 10))
+        );
+    }
+
 }

@@ -16,7 +16,19 @@ public class LightGrid {
     }
 
     public void turnLightsOn(Point start, Point end) {
-        forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_ON);
+        if (isPointWithinBounds(start) && isPointWithinBounds(end)) {
+            forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_ON);
+        } else {
+            throw new IllegalArgumentException("One or more points are not within the bounds of the grid");
+        }
+    }
+
+    public void turnLightsOff(Point start, Point end) {
+        if (isPointWithinBounds(start) && isPointWithinBounds(end)) {
+            forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_OFF);
+        } else {
+            throw new IllegalArgumentException("One or more points are not within the bounds of the grid");
+        }
     }
 
     public int countLightsOn() {
@@ -31,16 +43,16 @@ public class LightGrid {
         return total.get();
     }
 
-    public void turnLightsOff(Point start, Point end) {
-        forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_OFF);
-    }
-
     private void forEachPoint(Point start, Point end, IntConsumer2D action) {
         for (int x = start.getX(); x <= end.getX(); x++) {
             for (int y = start.getY(); y <= end.getY(); y++) {
                 action.accept(x, y);
             }
         }
+    }
+
+    private boolean isPointWithinBounds(Point point) {
+        return point.getX() >= 0 && point.getY() >= 0 && point.getX() < grid.length && point.getY() < grid[0].length;
     }
 
     @FunctionalInterface
