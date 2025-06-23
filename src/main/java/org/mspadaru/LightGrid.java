@@ -19,12 +19,12 @@ public class LightGrid {
         }
     }
 
-    public void turnLightsOn(Point start, Point end) {
+    public void turnOnLights(Point start, Point end) {
         validateRange(start, end);
         forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_ON);
     }
 
-    public void turnLightsOff(Point start, Point end) {
+    public void turnOffLights(Point start, Point end) {
         validateRange(start, end);
         forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_OFF);
     }

@@ -8,117 +8,117 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class LightGridTest {
 
     @Test
-    void test1x1GridTurnLightsOn() {
+    void test1X1GridTurnOnLights() {
         LightGrid lightGrid = new LightGrid(1, 1);
-        lightGrid.turnLightsOn(new Point(0, 0), new Point(0, 0));
+        lightGrid.turnOnLights(new Point(0, 0), new Point(0, 0));
         assertEquals(1, lightGrid.countLightsOn());
     }
 
     @Test
-    void test1x1GridTurnLightsOff() {
+    void test1X1GridTurnOffLights() {
         LightGrid lightGrid = new LightGrid(1, 1);
-        lightGrid.turnLightsOn(new Point(0, 0), new Point(0, 0));
-        lightGrid.turnLightsOff(new Point(0, 0), new Point(0, 0));
+        lightGrid.turnOnLights(new Point(0, 0), new Point(0, 0));
+        lightGrid.turnOffLights(new Point(0, 0), new Point(0, 0));
         assertEquals(0, lightGrid.countLightsOn());
     }
 
     @Test
-    void test10x10GridTurnLightsOn() {
+    void test10X10GridTurnOnLights() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        lightGrid.turnLightsOn(new Point(0, 0), new Point(9, 9));
+        lightGrid.turnOnLights(new Point(0, 0), new Point(9, 9));
         assertEquals(100, lightGrid.countLightsOn());
     }
 
     @Test
-    void test10x10GridTurnLightsOff() {
+    void test10X10GridTurnOffLights() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        lightGrid.turnLightsOn(new Point(0, 0), new Point(9, 9));
-        lightGrid.turnLightsOff(new Point(0, 0), new Point(9, 9));
+        lightGrid.turnOnLights(new Point(0, 0), new Point(9, 9));
+        lightGrid.turnOffLights(new Point(0, 0), new Point(9, 9));
         assertEquals(0, lightGrid.countLightsOn());
     }
 
     @Test
-    void test10x10GridTurnLightsOnPartial() {
+    void test10X10GridTurnOnLightsPartial() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        lightGrid.turnLightsOn(new Point(2, 2), new Point(8, 8));
+        lightGrid.turnOnLights(new Point(2, 2), new Point(8, 8));
         assertEquals(49, lightGrid.countLightsOn());
     }
 
     @Test
-    void test10x10GridTurnLightsOffPartial() {
+    void test10X10GridTurnOffLightsPartial() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        lightGrid.turnLightsOn(new Point(0, 0), new Point(9, 9));
-        lightGrid.turnLightsOff(new Point(2, 2), new Point(8, 8));
+        lightGrid.turnOnLights(new Point(0, 0), new Point(9, 9));
+        lightGrid.turnOffLights(new Point(2, 2), new Point(8, 8));
         assertEquals(51, lightGrid.countLightsOn());
     }
 
     @Test
-    void test10x10GridTurnLightsOnCorners() {
+    void test10X10GridTurnOnLightsCorners() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        lightGrid.turnLightsOn(new Point(0, 0), new Point(0, 0));
-        lightGrid.turnLightsOn(new Point(0, 9), new Point(0, 9));
-        lightGrid.turnLightsOn(new Point(9, 0), new Point(9, 0));
-        lightGrid.turnLightsOn(new Point(9, 9), new Point(9, 9));
+        lightGrid.turnOnLights(new Point(0, 0), new Point(0, 0));
+        lightGrid.turnOnLights(new Point(0, 9), new Point(0, 9));
+        lightGrid.turnOnLights(new Point(9, 0), new Point(9, 0));
+        lightGrid.turnOnLights(new Point(9, 9), new Point(9, 9));
         assertEquals(4, lightGrid.countLightsOn());
     }
 
     @Test
-    void test10x10GridTurnLightsOffCorners() {
+    void test10X10GridTurnOffLightsCorners() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        lightGrid.turnLightsOn(new Point(0, 0), new Point(9, 9));
-        lightGrid.turnLightsOff(new Point(0, 0), new Point(0, 0));
-        lightGrid.turnLightsOff(new Point(0, 9), new Point(0, 9));
-        lightGrid.turnLightsOff(new Point(9, 0), new Point(9, 0));
-        lightGrid.turnLightsOff(new Point(9, 9), new Point(9, 9));
+        lightGrid.turnOnLights(new Point(0, 0), new Point(9, 9));
+        lightGrid.turnOffLights(new Point(0, 0), new Point(0, 0));
+        lightGrid.turnOffLights(new Point(0, 9), new Point(0, 9));
+        lightGrid.turnOffLights(new Point(9, 0), new Point(9, 0));
+        lightGrid.turnOffLights(new Point(9, 9), new Point(9, 9));
         assertEquals(96, lightGrid.countLightsOn());
     }
 
     @Test
-    void test10x10GridTurnLightsOnPartialNoChangeIfWasAlreadyOn() {
+    void test10X10GridTurnOnPartialNoChangeIfWasAlreadyOnLights() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        lightGrid.turnLightsOn(new Point(2, 2), new Point(8, 8));
-        lightGrid.turnLightsOn(new Point(2, 2), new Point(8, 8));
+        lightGrid.turnOnLights(new Point(2, 2), new Point(8, 8));
+        lightGrid.turnOnLights(new Point(2, 2), new Point(8, 8));
         assertEquals(49, lightGrid.countLightsOn());
     }
 
 
     @Test
-    void test10x10GridTurnLightsOffPartialNoChangeIfWasAlreadyOff() {
+    void test10X10GridTurnOffPartialNoChangeIfWasAlreadyOffLights() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        lightGrid.turnLightsOn(new Point(0, 0), new Point(9, 9));
-        lightGrid.turnLightsOff(new Point(2, 2), new Point(8, 8));
-        lightGrid.turnLightsOff(new Point(2, 2), new Point(8, 8));
+        lightGrid.turnOnLights(new Point(0, 0), new Point(9, 9));
+        lightGrid.turnOffLights(new Point(2, 2), new Point(8, 8));
+        lightGrid.turnOffLights(new Point(2, 2), new Point(8, 8));
         assertEquals(51, lightGrid.countLightsOn());
     }
 
     @Test
-    void testTurnLightsOnOutOfBoundsThrowException() {
+    void testTurnOnLightsOutOfBoundsThrowException() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnLightsOn(new Point(9, 9), new Point(10, 10)));
+        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnOnLights(new Point(9, 9), new Point(10, 10)));
     }
 
     @Test
-    void testTurnLightsOffOutOfBoundsThrowException() {
+    void testTurnOffLightsOutOfBoundsThrowException() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnLightsOff(new Point(9, 9), new Point(10, 10)));
+        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnOffLights(new Point(9, 9), new Point(10, 10)));
     }
 
     @Test
-    void testNegativeCoordinatesThrowException() {
+    void testTurnOnLightsNegativeCoordinatesThrowException() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnLightsOn(new Point(-1, 0), new Point(0, 0)));
+        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnOnLights(new Point(-1, 0), new Point(0, 0)));
     }
 
     @Test
-    void testTurnLightsOnInvalidRangeThrows() {
+    void testTurnOnLightsInvalidRangeThrows() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnLightsOn(new Point(5, 5), new Point(4, 4)));
+        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnOnLights(new Point(5, 5), new Point(4, 4)));
     }
 
     @Test
-    void testTurnLightsOffInvalidRangeThrows() {
+    void testTurnOffLightsInvalidRangeThrows() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnLightsOff(new Point(5, 5), new Point(4, 4)));
+        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnOffLights(new Point(5, 5), new Point(4, 4)));
     }
 
     @Test
@@ -137,10 +137,26 @@ class LightGridTest {
     @Test
     void testToggleLightsWhenOnTurnsLightsOff() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        lightGrid.turnLightsOn(new Point(0, 0), new Point(9, 9));
+        lightGrid.turnOnLights(new Point(0, 0), new Point(9, 9));
         lightGrid.toggleLights(new Point(0, 0), new Point(9, 9));
         assertEquals(0, lightGrid.countLightsOn());
 
     }
+
+    @Test
+    void testToggleLightsTwiceWhenOffKeepsLightsOff() {
+        LightGrid lightGrid = new LightGrid(10, 10);
+        lightGrid.toggleLights(new Point(0, 0), new Point(9, 9));
+        lightGrid.toggleLights(new Point(0, 0), new Point(9, 9));
+        assertEquals(0, lightGrid.countLightsOn());
+
+    }
+
+    @Test
+    void testToggleLightsOutOfBoundsThrowException() {
+        LightGrid lightGrid = new LightGrid(10, 10);
+        assertThrows(IllegalArgumentException.class, () -> lightGrid.toggleLights(new Point(9, 9), new Point(10, 10)));
+    }
+
 
 }
