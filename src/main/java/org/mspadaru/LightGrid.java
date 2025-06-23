@@ -37,7 +37,11 @@ public class LightGrid {
 
 
     public void toggleLights(Point start, Point end) {
-        // TODO
+        if (isPointWithinBounds(start) && isPointWithinBounds(end) && isValidRange(start, end)) {
+            forEachPoint(start, end, (x, y) -> grid[x][y] = grid[x][y] == LIGHT_OFF ? LIGHT_ON : LIGHT_OFF);
+        } else {
+            throw new IllegalArgumentException("One or more points are not within the bounds of the grid");
+        }
     }
 
     public int countLightsOn() {
