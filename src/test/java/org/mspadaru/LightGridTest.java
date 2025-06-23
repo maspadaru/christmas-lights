@@ -158,5 +158,4 @@ class LightGridTest {
         assertThrows(IllegalArgumentException.class, () -> lightGrid.toggleLights(new Point(9, 9), new Point(10, 10)));
     }
 
-
 }
