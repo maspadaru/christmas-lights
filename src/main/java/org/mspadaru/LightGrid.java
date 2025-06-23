@@ -31,6 +31,10 @@ public class LightGrid {
         return total.get();
     }
 
+    public void turnLightsOff(Point start, Point end) {
+        //TODO
+    }
+
     private void forEachPoint(Point start, Point end, IntConsumer2D action) {
         for (int x = start.getX(); x <= end.getX(); x++) {
             for (int y = start.getY(); y <= end.getY(); y++) {
