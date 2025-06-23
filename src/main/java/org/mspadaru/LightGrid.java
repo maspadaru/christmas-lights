@@ -35,6 +35,11 @@ public class LightGrid {
         }
     }
 
+
+    public void toggleLights(Point start, Point end) {
+        // TODO
+    }
+
     public int countLightsOn() {
         AtomicInteger total = new AtomicInteger(0);
         Point start = new Point(0, 0);

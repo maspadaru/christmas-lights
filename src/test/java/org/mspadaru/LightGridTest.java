@@ -126,4 +126,21 @@ class LightGridTest {
         assertThrows(IllegalArgumentException.class, () -> new LightGrid(0, 10));
     }
 
+    @Test
+    void testToggleLightsWhenOffTurnsLightsOn() {
+        LightGrid lightGrid = new LightGrid(10, 10);
+        lightGrid.toggleLights(new Point(0, 0), new Point(9, 9));
+        assertEquals(100, lightGrid.countLightsOn());
+
+    }
+
+    @Test
+    void testToggleLightsWhenOnTurnsLightsOff() {
+        LightGrid lightGrid = new LightGrid(10, 10);
+        lightGrid.turnLightsOn(new Point(0, 0), new Point(9, 9));
+        lightGrid.toggleLights(new Point(0, 0), new Point(9, 9));
+        assertEquals(0, lightGrid.countLightsOn());
+
+    }
+
 }
