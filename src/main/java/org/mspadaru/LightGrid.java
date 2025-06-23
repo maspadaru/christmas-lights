@@ -32,7 +32,7 @@ public class LightGrid {
     }
 
     public void turnLightsOff(Point start, Point end) {
-        //TODO
+        forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_OFF);
     }
 
     private void forEachPoint(Point start, Point end, IntConsumer2D action) {
