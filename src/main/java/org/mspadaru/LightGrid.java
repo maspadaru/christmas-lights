@@ -15,7 +15,7 @@ public class LightGrid {
             Point end = new Point(xSize - 1, ySize - 1);
             forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_OFF);
         } else {
-            throw new IllegalArgumentException("Grid dimnesions cannot be zero");
+            throw new IllegalArgumentException("Grid dimesions cannot be zero");
         }
     }
 
@@ -54,11 +54,11 @@ public class LightGrid {
     }
 
     private boolean isValidRange(Point start, Point end) {
-        return start.getX() <= end.getX() && start.getY() <= end.getY();
+        return start.x() <= end.x() && start.y() <= end.y();
     }
 
     private boolean isPointWithinBounds(Point point) {
-        return point.getX() >= 0 && point.getY() >= 0 && point.getX() < grid.length && point.getY() < grid[0].length;
+        return point.x() >= 0 && point.y() >= 0 && point.x() < grid.length && point.y() < grid[0].length;
     }
 
     private boolean isGridSizeValid(int x, int y) {
@@ -66,8 +66,8 @@ public class LightGrid {
     }
 
     private void forEachPoint(Point start, Point end, IntConsumer2D action) {
-        for (int x = start.getX(); x <= end.getX(); x++) {
-            for (int y = start.getY(); y <= end.getY(); y++) {
+        for (int x = start.x(); x <= end.x(); x++) {
+            for (int y = start.y(); y <= end.y(); y++) {
                 action.accept(x, y);
             }
         }
