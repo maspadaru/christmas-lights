@@ -2,7 +2,8 @@ package org.mspadaru;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LightGridTest {
 
@@ -91,19 +92,32 @@ class LightGridTest {
     }
 
     @Test
-    void test10x10GridTurnLightsOnOutOfBounds() {
+    void testTurnLightsOnOutOfBoundsThrowException() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        assertThrows(IllegalArgumentException.class, () ->
-                lightGrid.turnLightsOn(new Point(9, 9), new Point(10, 10))
-        );
+        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnLightsOn(new Point(9, 9), new Point(10, 10)));
     }
 
     @Test
-    void test10x10GridTurnLightsOffOutOfBounds() {
+    void testTurnLightsOffOutOfBoundsThrowException() {
         LightGrid lightGrid = new LightGrid(10, 10);
-        assertThrows(IllegalArgumentException.class, () ->
-                lightGrid.turnLightsOff(new Point(9, 9), new Point(10, 10))
-        );
+        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnLightsOff(new Point(9, 9), new Point(10, 10)));
+    }
+
+    @Test
+    void testNegativeCoordinatesThrowException() {
+        LightGrid lightGrid = new LightGrid(10, 10);
+        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnLightsOn(new Point(-1, 0), new Point(0, 0)));
+    }
+
+    @Test
+    void testInvalidRangeThrows() {
+        LightGrid lightGrid = new LightGrid(10, 10);
+        assertThrows(IllegalArgumentException.class, () -> lightGrid.turnLightsOn(new Point(5, 5), new Point(4, 4)));
+    }
+
+    @Test
+    void testZeroSizeGridThrows() {
+        assertThrows(IllegalArgumentException.class, () -> new LightGrid(0, 10));
     }
 
 }
