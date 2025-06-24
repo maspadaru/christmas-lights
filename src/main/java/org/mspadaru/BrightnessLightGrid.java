@@ -24,7 +24,8 @@ public class BrightnessLightGrid implements LightGrid {
 
     @Override
     public void turnOffLights(Point start, Point end) {
-
+        utils.validateRange(start, end);
+        utils.forEachPoint(start, end, (x, y) -> grid[x][y]--);
     }
 
     @Override
