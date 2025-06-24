@@ -2,7 +2,7 @@ package org.mspadaru;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BrightnessLightGridTest {
 
@@ -29,7 +29,6 @@ class BrightnessLightGridTest {
         }
         assertEquals(Integer.MAX_VALUE, lightGrid.measureLights());
     }
-
 
 
 }

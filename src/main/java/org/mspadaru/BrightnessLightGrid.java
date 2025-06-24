@@ -1,28 +1,25 @@
 package org.mspadaru;
 
+import org.mspadaru.util.GridUtils;
+
 public class BrightnessLightGrid implements LightGrid {
+    private static final int LIGHT_OFF = 0;
 
     private final int[][] grid;
+    private final GridUtils utils;
 
     public BrightnessLightGrid(int xSize, int ySize) {
-            grid = new int[xSize][ySize];
-            Point start = new Point(0, 0);
-            Point end = new Point(xSize - 1, ySize - 1);
-
-            for (int x = start.x(); x <= end.x(); x++) {
-                for (int y = start.y(); y <= end.y(); y++) {
-                    grid[x][y] = 0;
-                }
-            }
+        this.utils = new GridUtils(xSize, ySize);
+        grid = new int[xSize][ySize];
+        Point start = new Point(0, 0);
+        Point end = new Point(xSize - 1, ySize - 1);
+        utils.forEachPoint(start, end, (x, y) -> grid[x][y] = LIGHT_OFF);
     }
 
     @Override
     public void turnOnLights(Point start, Point end) {
-        for (int x = start.x(); x <= end.x(); x++) {
-            for (int y = start.y(); y <= end.y(); y++) {
-                grid[x][y]++;
-            }
-        }
+        utils.validateRange(start, end);
+        utils.forEachPoint(start, end, (x, y) -> grid[x][y]++);
     }
 
     @Override
@@ -37,12 +34,12 @@ public class BrightnessLightGrid implements LightGrid {
 
     @Override
     public int measureLights() {
-        int sum = 0;
-        for (int x = 0; x <= grid.length-1; x++) {
-            for (int y = 0; y <= grid[x].length-1; y++) {
-                sum += grid[x][y];
+        int total = 0;
+        for (int[] row : grid) {
+            for (int brightness : row) {
+                total += brightness;
             }
         }
-        return sum;
+        return total;
     }
 }
