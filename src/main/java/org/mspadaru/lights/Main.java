@@ -1,4 +1,9 @@
-package org.mspadaru;
+package org.mspadaru.lights;
+
+import org.mspadaru.lights.grid.BinaryLightGrid;
+import org.mspadaru.lights.grid.BrightnessLightGrid;
+import org.mspadaru.lights.grid.LightGrid;
+import org.mspadaru.lights.model.Point;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.

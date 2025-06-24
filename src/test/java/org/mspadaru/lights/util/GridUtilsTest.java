@@ -1,7 +1,7 @@
-package org.mspadaru.util;
+package org.mspadaru.lights.util;
 
 import org.junit.jupiter.api.Test;
-import org.mspadaru.Point;
+import org.mspadaru.lights.model.Point;
 
 import static org.junit.jupiter.api.Assertions.*;
 

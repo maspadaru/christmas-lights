@@ -1,6 +1,7 @@
-package org.mspadaru;
+package org.mspadaru.lights.grid;
 
-import org.mspadaru.util.GridUtils;
+import org.mspadaru.lights.model.Point;
+import org.mspadaru.lights.util.GridUtils;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

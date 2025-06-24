@@ -1,6 +1,7 @@
-package org.mspadaru;
+package org.mspadaru.lights.grid;
 
 import org.junit.jupiter.api.Test;
+import org.mspadaru.lights.model.Point;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

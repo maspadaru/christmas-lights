@@ -1,4 +1,6 @@
-package org.mspadaru;
+package org.mspadaru.lights.grid;
+
+import org.mspadaru.lights.model.Point;
 
 public interface LightGrid {
 

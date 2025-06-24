@@ -1,6 +1,6 @@
-package org.mspadaru.util;
+package org.mspadaru.lights.util;
 
-import org.mspadaru.Point;
+import org.mspadaru.lights.model.Point;
 
 public class GridUtils {
     private final int width;
@@ -16,7 +16,8 @@ public class GridUtils {
 
     public void validateRange(Point start, Point end) {
         if (!isPointWithinBounds(start) || !isPointWithinBounds(end) || !isValidRange(start, end)) {
-            throw new IllegalArgumentException("Invalid point range");
+            throw new IllegalArgumentException(
+                    String.format("Invalid range %s to %s for grid size %dx%d", start, end, width, height));
         }
     }
 
