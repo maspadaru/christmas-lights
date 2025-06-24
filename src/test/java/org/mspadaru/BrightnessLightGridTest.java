@@ -39,6 +39,12 @@ class BrightnessLightGridTest {
         assertEquals(10_000_000, lightGrid.measureLights());
     }
 
+    @Test
+    void testTurnOnBottomRightCorner() {
+        LightGrid lightGrid = new BrightnessLightGrid(1000, 1000);
+        lightGrid.turnOnLights(new Point(999, 999), new Point(999, 999));
+        assertEquals(1, lightGrid.measureLights());
+    }
 
     @Test
     void testTurnOffOneLightOnce() {
@@ -69,6 +75,37 @@ class BrightnessLightGridTest {
             lightGrid.turnOffLights(new Point(0, 0), new Point(999, 999));
         }
         assertEquals(0, lightGrid.measureLights());
+    }
+
+    @Test
+    void testTurnOffLightAlreadyAtZeroKeepsZero() {
+        LightGrid lightGrid = new BrightnessLightGrid(1000, 1000);
+        lightGrid.turnOffLights(new Point(0, 0), new Point(0, 0));
+        assertEquals(0, lightGrid.measureLights());
+    }
+
+    @Test
+    void testToggleOneLightOnce() {
+        LightGrid lightGrid = new BrightnessLightGrid(1000, 1000);
+        lightGrid.toggleLights(new Point(0, 0), new Point(0, 0));
+        assertEquals(2, lightGrid.measureLights());
+    }
+
+    @Test
+    void testToggleAllLightsTenTimes() {
+        LightGrid lightGrid = new BrightnessLightGrid(1000, 1000);
+        for (int i = 0; i < 10; i++) {
+            lightGrid.toggleLights(new Point(0, 0), new Point(999, 999));
+        }
+        assertEquals(20_000_000, lightGrid.measureLights());
+    }
+
+    @Test
+    void testToggleSameLightTwiceIncreasesBrightnessByFour() {
+        LightGrid lightGrid = new BrightnessLightGrid(1000, 1000);
+        lightGrid.toggleLights(new Point(0, 0), new Point(0, 0));
+        lightGrid.toggleLights(new Point(0, 0), new Point(0, 0));
+        assertEquals(4, lightGrid.measureLights());
     }
 
 }

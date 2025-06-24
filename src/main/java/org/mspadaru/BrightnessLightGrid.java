@@ -25,12 +25,13 @@ public class BrightnessLightGrid implements LightGrid {
     @Override
     public void turnOffLights(Point start, Point end) {
         utils.validateRange(start, end);
-        utils.forEachPoint(start, end, (x, y) -> grid[x][y]--);
+        utils.forEachPoint(start, end, (x, y) -> grid[x][y] = grid[x][y] > 0 ? grid[x][y] - 1 : LIGHT_OFF);
     }
 
     @Override
     public void toggleLights(Point start, Point end) {
-
+        utils.validateRange(start, end);
+        utils.forEachPoint(start, end, (x, y) -> grid[x][y] += 2);
     }
 
     @Override
