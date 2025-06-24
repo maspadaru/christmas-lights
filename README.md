@@ -1,4 +1,4 @@
-#### 🎄 **Christmas Lights Kata**
+# 🎄 **Christmas Lights Kata**
 
 Implementing Christmas Lights Kata 
 
